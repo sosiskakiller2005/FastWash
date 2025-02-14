@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FastWash.AppData;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,21 @@ namespace FastWash.Views.Windows
         public AuthorisationWindow()
         {
             InitializeComponent();
+        }
+
+        private void EntryBTn_Click(object sender, RoutedEventArgs e)
+        {
+            if (AuthorisationHelper.Authorise(NameTb.Text, PasswordTb.Password))
+            {
+                MenuWindow menuWindow = new MenuWindow();
+                menuWindow.Show();
+                Close();
+            }
+        }
+
+        private void ForgotPassHl_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

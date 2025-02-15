@@ -1,4 +1,6 @@
-﻿using System;
+﻿using FastWash.AppData;
+using FastWash.Views.Pages;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +24,23 @@ namespace FastWash.Views.Windows
         public MenuWindow()
         {
             InitializeComponent();
+            FrameHelper.selectedFrame = MainFrame;
+            MainFrame.Navigate(new ServicePage());
+        }
+
+        private void ServiceBtn_Click(object sender, RoutedEventArgs e)
+        {
+            FrameHelper.selectedFrame.Navigate(new ServicePage());
+        }
+
+        private void MyOrdersBTn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ProfileBtn_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

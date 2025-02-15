@@ -39,5 +39,12 @@ namespace FastWash.Views.Windows
         {
 
         }
+
+        private void SignUpHl_Click(object sender, RoutedEventArgs e)
+        {
+            SignUpWindow signUpWindow = new SignUpWindow();
+            signUpWindow.Show();
+            Close();
+        }
     }
 }

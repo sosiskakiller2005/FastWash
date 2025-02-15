@@ -21,7 +21,28 @@
             </Setter.Value>
         </Setter>
     </Style>
-    <Style x:Key="PressedBtn" TargetType="Button">
+    <Style x:Key="MenuButton" TargetType="Button">
+        <Setter Property="FontSize" Value="25" />
+        <Setter Property="FontFamily" Value="Inter" />
+        <Setter Property="Foreground" Value="#2E9ACE" />
+        <Setter Property="Width" Value="200" />
+        <Setter Property="Height" Value="70" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="#2E9ACE" 
+                            BorderBrush="Transparent"
+                            BorderThickness="1" 
+                            Padding="5">
+                        <ContentPresenter HorizontalAlignment="Center" 
+                                          VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--<Style x:Key="PressedBtn" TargetType="Button">
         <Setter Property="FontSize" Value="25" />
         <Setter Property="FontFamily" Value="{StaticResource Inter}" />
         <Setter Property="Foreground" Value="White" />
@@ -62,6 +83,6 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-    </Style>
+    </Style>-->
 
 </ResourceDictionary>

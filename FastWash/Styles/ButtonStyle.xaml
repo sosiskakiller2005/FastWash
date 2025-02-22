@@ -30,7 +30,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <Border Background="#2E9ACE" 
+                    <Border Background="#FF92D0E8"
                             BorderBrush="Transparent"
                             BorderThickness="1" 
                             Padding="5">

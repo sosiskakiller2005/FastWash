@@ -35,7 +35,7 @@ namespace FastWash.Views.Windows
 
         private void MyOrdersBTn_Click(object sender, RoutedEventArgs e)
         {
-
+            FrameHelper.selectedFrame.Navigate(new MyOrdersPage());
         }
 
         private void ProfileBtn_Click(object sender, RoutedEventArgs e)

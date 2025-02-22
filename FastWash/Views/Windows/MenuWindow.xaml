@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:FastWash.Views.Windows"
         mc:Ignorable="d"
         Title="Главное" MaxHeight="800" MaxWidth="1200" Height="800" Width="1200" WindowStartupLocation="CenterScreen">
-    <StackPanel Background="#84D4ED">
+    <StackPanel Background="#FFC4EBF6">
         <StackPanel Orientation="Horizontal" Height="100">
             <Image Source="/Resources/logo.png" Margin="10"/>
         </StackPanel>
@@ -14,11 +14,23 @@
         <Border Height="3" Background="White"/>
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Height="70">
-            <Button Name="ServiceBtn" Content="Список услуг" Click="ServiceBtn_Click" Style="{StaticResource MenuButton}"/>
+            <Button Name="ServiceBtn" Click="ServiceBtn_Click" Style="{StaticResource MenuButton}">
+                <Button.Content>
+                    <TextBlock Text="Список услуг" Foreground="#2F508D" FontStyle="Italic" FontWeight="Normal"/>
+                </Button.Content>
+            </Button>
             <Border Width="30"/>
-            <Button Name="MyOrdersBTn" Content="Мои заказы" Click="MyOrdersBTn_Click" Style="{StaticResource MenuButton}"/>
+            <Button Name="MyOrdersBTn" Click="MyOrdersBTn_Click" Style="{StaticResource MenuButton}">
+                <Button.Content>
+                    <TextBlock Text="Мои заказы" Foreground="#2F508D" FontStyle="Italic" FontWeight="Normal"/>
+                </Button.Content>
+            </Button>
             <Border Width="30"/>
-            <Button Name="ProfileBtn" Content="Профиль" Click="ProfileBtn_Click" Style="{StaticResource MenuButton}" Foreground="#2E9ACE"/>
+            <Button Name="ProfileBtn" Click="ProfileBtn_Click" Style="{StaticResource MenuButton}" Foreground="#2E9ACE" >
+                <Button.Content>
+                    <TextBlock Text="Профиль" Foreground="#2F508D" FontStyle="Italic" FontWeight="Normal"/>
+                </Button.Content>
+            </Button>
         </StackPanel>
 
         <Border Height="3" Background="White"/>

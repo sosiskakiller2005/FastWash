@@ -26,5 +26,9 @@
                 </ListBox>
             </Border>
         </StackPanel>
+
+        <StackPanel Grid.Column="1" Margin="10">
+            
+        </StackPanel>
     </Grid>
 </Page>

@@ -21,14 +21,31 @@
             <Image Source="/Resources/Category.png"/>
             <Border Height="20"/>
             <Border CornerRadius="40" Height="400">
-                <ListBox Name="ServiceLb" Style="{StaticResource ServiceLb}" Height="auto" ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.CanContentScroll="True">
+                <ListBox Name="ServiceLb" Style="{StaticResource ServiceLb}" Height="auto" ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.CanContentScroll="True" MouseDoubleClick="ServiceLb_MouseDoubleClick">
 
                 </ListBox>
             </Border>
         </StackPanel>
 
         <StackPanel Grid.Column="1" Margin="10">
-            
+            <ListBox Name="OrderLb" >
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal" Margin="10" Background="#2E9ACE" Width="400">
+                            <TextBlock Text="{Binding Service.Name}" Foreground="White" Margin="10"/>
+                            <Border Width="70"/>
+                            <Button Name="RemoveBtn" Content="-" Click="RemoveBtn_Click" Width="40" Height="40"/>
+                            <Border Width="20"/>
+                            <TextBlock Text="{Binding Count}" Foreground="White"    />
+                            <Border Width="20"/>
+                            <Button Name="AddBtn" Content="+" Click="AddBtn_Click" Width="40" Height="40"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+
+            <Border Height="50"/>
+            <TextBlock Name="AmountTb" VerticalAlignment="Bottom" Margin="0 0 0 20"/>
         </StackPanel>
     </Grid>
 </Page>

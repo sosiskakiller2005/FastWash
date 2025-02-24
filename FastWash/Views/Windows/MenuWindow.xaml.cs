@@ -40,7 +40,7 @@ namespace FastWash.Views.Windows
 
         private void ProfileBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            FrameHelper.selectedFrame.Navigate(new ProfilePage());
         }
     }
 }

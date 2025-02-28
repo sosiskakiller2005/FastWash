@@ -37,7 +37,9 @@ namespace FastWash.Views.Windows
 
         private void ForgotPassHl_Click(object sender, RoutedEventArgs e)
         {
-
+            ForgetPasswordWindow forgetPasswordWindow = new ForgetPasswordWindow();
+            forgetPasswordWindow.Show();
+            Close();
         }
 
         private void SignUpHl_Click(object sender, RoutedEventArgs e)

@@ -46,6 +46,7 @@
 
             <Border Height="50"/>
             <TextBlock Name="AmountTb" VerticalAlignment="Bottom" Margin="0 0 0 20"/>
+            <Button Name="OrderBtn" Content="Заказ" Click="OrderBtn_Click" Visibility="Hidden"/>
         </StackPanel>
     </Grid>
 </Page>

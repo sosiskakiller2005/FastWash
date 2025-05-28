@@ -1,4 +1,5 @@
-﻿using FastWash.Model;
+﻿using FastWash.AppData;
+using FastWash.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,7 @@ namespace FastWash.Views.Windows
     /// </summary>
     public partial class SignUpWindow : Window
     {
+        private static FastWashdbEntities _context = App.GetContext();
         public SignUpWindow()
         {
             InitializeComponent();
@@ -27,13 +29,42 @@ namespace FastWash.Views.Windows
 
         private void SignUpBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (!string.IsNullOrEmpty(NameTb.Text) && !string.IsNullOrEmpty(PasswordTb.Password) && !string.IsNullOrEmpty(RepeatPasswordTb.Password))
+            if (!string.IsNullOrEmpty(LastnameTb.Text) && !string.IsNullOrEmpty(NameTb.Text) && !string.IsNullOrEmpty(PhoneTb.Text) && !string.IsNullOrEmpty(EmailTb.Text) && 
+                !string.IsNullOrEmpty(PasswordTb.Password) && !string.IsNullOrEmpty(RepeatPasswordTb.Password))
             {
-                User newUser = new User()
+                if (PasswordTb.Password != RepeatPasswordTb.Password)
                 {
-                    Name = NameTb.Text,
-                    Password = PasswordTb.Password
-                };
+                    MessageBoxHelper.Error("Пароли не совпадают", "Ошибка регистрации");
+                }
+                else
+                {
+                    User newUser = new User()
+                    {
+                        Lastname = LastnameTb.Text,
+                        Name = NameTb.Text,
+                        Phone = PhoneTb.Text,
+                        Email = EmailTb.Text,
+                        RoleId = 1,
+                        Password = PasswordTb.Password
+                    };
+                    try
+                    {
+                        _context.User.Add(newUser);
+                        _context.SaveChanges();
+                        MessageBoxHelper.Information("Регистрация прошла успешно", "Успех");
+                        AuthorisationWindow authorisationWindow = new AuthorisationWindow();
+                        authorisationWindow.Show();
+                        Close();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBoxHelper.Error($"Произошла ошибка при регистрации: {ex.Message}", "Ошибка регистрации");
+                    }
+                }
+            }
+            else
+            {
+                MessageBoxHelper.Error("Не все поля для ввода заполнены.");
             }
         }
 

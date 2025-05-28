@@ -23,8 +23,8 @@ namespace FastWash.Model
         public System.DateTime Date { get; set; }
         public int ClientId { get; set; }
         public int UserId { get; set; }
-        public int Amount { get; set; }
         public string Adress { get; set; }
+        public int Amount { get; set; }
     
         public virtual Client Client { get; set; }
         public virtual User User { get; set; }

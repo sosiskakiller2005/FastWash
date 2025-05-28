@@ -67,40 +67,41 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="AppData\AuthorisationHelper.cs" />
+    <Compile Include="AppData\CartService.cs" />
     <Compile Include="AppData\FrameHelper.cs" />
     <Compile Include="AppData\MessageBoxHelper.cs" />
     <Compile Include="Model\Client.cs">
-      <DependentUpon>FastWashDbModel.tt</DependentUpon>
+      <DependentUpon>FastWashModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\FastWashDbModel.Context.cs">
+    <Compile Include="Model\FastWashModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>FastWashDbModel.Context.tt</DependentUpon>
+      <DependentUpon>FastWashModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\FastWashDbModel.cs">
+    <Compile Include="Model\FastWashModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>FastWashDbModel.tt</DependentUpon>
+      <DependentUpon>FastWashModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\FastWashDbModel.Designer.cs">
+    <Compile Include="Model\FastWashModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>FastWashDbModel.edmx</DependentUpon>
+      <DependentUpon>FastWashModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Model\Order.cs">
-      <DependentUpon>FastWashDbModel.tt</DependentUpon>
+      <DependentUpon>FastWashModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\OrderService.cs">
-      <DependentUpon>FastWashDbModel.tt</DependentUpon>
+      <DependentUpon>FastWashModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Role.cs">
-      <DependentUpon>FastWashDbModel.tt</DependentUpon>
+      <DependentUpon>FastWashModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Service.cs">
-      <DependentUpon>FastWashDbModel.tt</DependentUpon>
+      <DependentUpon>FastWashModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\User.cs">
-      <DependentUpon>FastWashDbModel.tt</DependentUpon>
+      <DependentUpon>FastWashModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Views\Pages\MyOrdersPage.xaml.cs">
       <DependentUpon>MyOrdersPage.xaml</DependentUpon>
@@ -111,8 +112,14 @@
     <Compile Include="Views\Pages\ServicePage.xaml.cs">
       <DependentUpon>ServicePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Windows\AddEditOrderWindow.xaml.cs">
+      <DependentUpon>AddEditOrderWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Windows\AuthorisationWindow.xaml.cs">
       <DependentUpon>AuthorisationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Windows\ChooseClientWindow.xaml.cs">
+      <DependentUpon>ChooseClientWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Windows\ForgetPasswordWindow.xaml.cs">
       <DependentUpon>ForgetPasswordWindow.xaml</DependentUpon>
@@ -145,12 +152,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="Model\FastWashDbModel.edmx">
+    <EntityDeploy Include="Model\FastWashModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>FastWashDbModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>FastWashModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Model\FastWashDbModel.edmx.diagram">
-      <DependentUpon>FastWashDbModel.edmx</DependentUpon>
+    <None Include="Model\FastWashModel.edmx.diagram">
+      <DependentUpon>FastWashModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -225,7 +232,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Windows\AddEditOrderWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Windows\AuthorisationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Windows\ChooseClientWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -247,21 +262,23 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Model\FastWashDbModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>FastWashDbModel.Context.cs</LastGenOutput>
-      <DependentUpon>FastWashDbModel.edmx</DependentUpon>
-    </Content>
-    <Content Include="Model\FastWashDbModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>FastWashDbModel.edmx</DependentUpon>
-      <LastGenOutput>FastWashDbModel.cs</LastGenOutput>
-    </Content>
     <Resource Include="Resources\edit.png" />
     <Resource Include="Resources\Category.png" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Model\FastWashModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FastWashModel.edmx</DependentUpon>
+      <LastGenOutput>FastWashModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Model\FastWashModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FastWashModel.edmx</DependentUpon>
+      <LastGenOutput>FastWashModel.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

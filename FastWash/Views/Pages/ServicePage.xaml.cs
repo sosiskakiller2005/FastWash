@@ -1,4 +1,6 @@
 ﻿using FastWash.Model;
+using FastWash.Services;
+using FastWash.Views.Windows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,7 +24,7 @@ namespace FastWash.Views.Pages
     public partial class ServicePage : Page
     {
         private static FastWashdbEntities _context = App.GetContext();
-        List<CartItem> Cart = new List<CartItem>();
+        private readonly CartService _cartService = new CartService();
         public ServicePage()
         {
             InitializeComponent();
@@ -36,24 +38,8 @@ namespace FastWash.Views.Pages
             Service selectedService = ServiceLb.SelectedItem as Service;
             if (selectedService == null) return;
 
-            CartItem selectedCartItem = Cart.FirstOrDefault(ci => ci.Service.Id == selectedService.Id);
-            if (selectedCartItem != null)
-            {
-                selectedCartItem.Count++;
-            }
-            else
-            {
-                CartItem newCartItem = new CartItem()
-                {
-                    Service = selectedService,
-                    Count = 1
-                };
-                Cart.Add(newCartItem);
-            }
-            OrderLb.ItemsSource = null;
-            OrderLb.ItemsSource = Cart;
-
-            ProcessAmount();
+            _cartService.AddService(selectedService);
+            RefreshCart();
         }
 
         private void RemoveBtn_Click(object sender, RoutedEventArgs e)
@@ -61,21 +47,11 @@ namespace FastWash.Views.Pages
             Button button = sender as Button;
             if (button == null) return;
 
-            CartItem cartItem = button.DataContext as CartItem;
+            var cartItem = button.DataContext as CartService.CartItem;
             if (cartItem == null) return;
 
-            if (cartItem.Count > 1)
-            {
-                cartItem.Count--;
-            }
-            else
-            {
-                Cart.Remove(cartItem);
-            }
-
-            OrderLb.ItemsSource = null;
-            OrderLb.ItemsSource = Cart;
-            ProcessAmount();
+            _cartService.DecreaseCount(cartItem.Service);
+            RefreshCart();
         }
 
         private void AddBtn_Click(object sender, RoutedEventArgs e)
@@ -83,36 +59,41 @@ namespace FastWash.Views.Pages
             Button button = sender as Button;
             if (button == null) return;
 
-            CartItem cartItem = button.DataContext as CartItem;
+            var cartItem = button.DataContext as CartService.CartItem;
             if (cartItem == null) return;
 
-            cartItem.Count++;
-            OrderLb.ItemsSource = null;
-            OrderLb.ItemsSource = Cart;
-
-            ProcessAmount();
+            _cartService.IncreaseCount(cartItem.Service);
+            RefreshCart();
         }
 
         /// <summary>
         /// Метод вычисляет итоговую сумму заказа.
         /// </summary>
-        private void ProcessAmount()
+        private void RefreshCart()
         {
-            int Amount = 0;
-            foreach (CartItem cartItem in Cart) 
+            OrderLb.ItemsSource = null;
+            OrderLb.ItemsSource = _cartService.Items;
+            ProcessAmount();
+            if (_cartService.Items.Count == 0)
             {
-                Amount += (int)(cartItem.Service.Cost * cartItem.Count);
+                OrderBtn.Visibility = Visibility.Hidden;
             }
-            AmountTb.Text = "Итого: " + Amount.ToString() + " ₽";
+            else
+            {
+                OrderBtn.Visibility = Visibility.Visible;
+            }
         }
 
-        /// <summary>
-        /// Класс, описывающий элемент корзины.
-        /// </summary>
-        public class CartItem
+        private void ProcessAmount()
         {
-            public Service Service { get; set; }
-            public int Count { get; set; }
+            int amount = _cartService.GetTotalAmount();
+            AmountTb.Text = "Итого: " + amount.ToString() + " ₽";
+        }
+
+        private void OrderBtn_Click(object sender, RoutedEventArgs e)
+        {
+            AddEditOrderWindow addEditOrderWindow = new AddEditOrderWindow(_cartService);
+            addEditOrderWindow.ShowDialog();
         }
     }
 }

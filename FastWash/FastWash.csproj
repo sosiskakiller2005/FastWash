@@ -70,6 +70,7 @@
     <Compile Include="AppData\CartService.cs" />
     <Compile Include="AppData\FrameHelper.cs" />
     <Compile Include="AppData\MessageBoxHelper.cs" />
+    <Compile Include="AppData\RelayCommand.cs" />
     <Compile Include="Model\Client.cs">
       <DependentUpon>FastWashModel.tt</DependentUpon>
     </Compile>
@@ -114,6 +115,9 @@
     </Compile>
     <Compile Include="Views\Windows\AddEditOrderWindow.xaml.cs">
       <DependentUpon>AddEditOrderWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Windows\AddEditServiceWindow.xaml.cs">
+      <DependentUpon>AddEditServiceWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Windows\AuthorisationWindow.xaml.cs">
       <DependentUpon>AuthorisationWindow.xaml</DependentUpon>
@@ -233,6 +237,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Windows\AddEditOrderWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Windows\AddEditServiceWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

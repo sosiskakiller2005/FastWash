@@ -18,7 +18,11 @@
                         <TextBlock Text="{Binding Cost, StringFormat={}{0} ₽}" Foreground="Black" Margin="10"/>
                         <Border Width="100"/>
 
-                        <Image Source="/Resources/edit.png" Margin="10"/>
+                        <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" 
+                                Command="{Binding DataContext.EditServiceCommand, RelativeSource={RelativeSource AncestorType=ListBox}}"
+                                CommandParameter="{Binding}">
+                            <Image Source="/Resources/edit.png" Margin="10"/>
+                        </Button>
                     </StackPanel>
                 </DataTemplate>
             </Setter.Value>

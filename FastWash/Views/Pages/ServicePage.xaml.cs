@@ -1,4 +1,5 @@
-﻿using FastWash.Model;
+﻿using FastWash.AppData;
+using FastWash.Model;
 using FastWash.Services;
 using FastWash.Views.Windows;
 using System;
@@ -25,13 +26,24 @@ namespace FastWash.Views.Pages
     {
         private static FastWashdbEntities _context = App.GetContext();
         private readonly CartService _cartService = new CartService();
+        public ICommand EditServiceCommand { get; }
         public ServicePage()
         {
             InitializeComponent();
+            EditServiceCommand = new RelayCommand<Service>(EditService);
+            DataContext = this;
             ServiceLb.ItemsSource = _context.Service.ToList();
         }
 
-        
+        private void EditService(Service service)
+        {
+            AddEditServiceWindow addEditServiceWindow = new AddEditServiceWindow(service);
+            if (addEditServiceWindow.ShowDialog() == true)
+            {
+                _context.SaveChanges();
+                ServiceLb.ItemsSource = App.GetContext().Service.ToList();
+            }
+        }
 
         private void ServiceLb_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
@@ -95,5 +107,7 @@ namespace FastWash.Views.Pages
             AddEditOrderWindow addEditOrderWindow = new AddEditOrderWindow(_cartService);
             addEditOrderWindow.ShowDialog();
         }
+
+
     }
 }
